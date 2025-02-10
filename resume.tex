@@ -1,0 +1,209 @@
+```
+\documentclass{article}
+\usepackage[cm]{fullpage}
+\usepackage{color}
+\usepackage{hyperref}
+
+\hypersetup{breaklinks=true,%
+pagecolor=white,%
+colorlinks=true,%
+linkcolor=cyan,%
+urlcolor=MyDarkBlue}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.0,0.45}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting parameters  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tabin}
+\setlength{\tabin}{1em}
+\newlength{\secsep}
+\setlength{\secsep}{0.1cm}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\definecolor{contactgray}{gray}{0.3}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Template Definitions  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lineunder}{\vspace*{-8pt} \\ \hspace*{-6pt} \hrulefill \\ \vspace*{-15pt}}
+\newcommand{\name}[1]{\begin{center}\textsc{\Huge#1}\\\end{center}}
+\newcommand{\program}[1]{\begin{center}\textsc{#1}\end{center}}
+\newcommand{\contact}[1]{\begin{center}\color{contactgray}{\small#1}\end{center}}
+
+\newenvironment{tabbedsection}[1]{
+  \begin{list}{}{
+      \setlength{\itemsep}{0pt}
+      \setlength{\labelsep}{0pt}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\leftmargin}{\tabin}
+      \setlength{\rightmargin}{\tabin}
+      \setlength{\listparindent}{0pt}
+      \setlength{\parsep}{0pt}
+      \setlength{\parskip}{0pt}
+      \setlength{\partopsep}{0pt}
+      \setlength{\topsep}{#1}
+    }
+  \item[]
+}{\end{list}}
+
+\newenvironment{nospacetabbing}{
+    \begin{tabbing}
+}{\end{tabbing}\vspace{-1.2em}}
+
+\newenvironment{resume_header}{}{\vspace{0pt}}
+
+\newenvironment{resume_section}[1]{
+  \filbreak
+  \vspace{2\secsep}
+  \textsc{\large#1}
+  \lineunder
+  \begin{tabbedsection}{\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{resume_subsection}[2][]{
+  \textbf{#2} \hfill {\footnotesize #1} \hspace{2em}
+  \begin{tabbedsection}{0.5\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{subitems}{
+  \renewcommand{\labelitemi}{-}
+  \begin{itemize}
+      \setlength{\labelsep}{1em}
+}{\end{itemize}}
+
+\newenvironment{resume_employer}[4]{
+  \vspace{\secsep}
+  \textbf{#1} \\ 
+  \indent {\small #2} \hfill {\footnotesize#3 (#4)}
+  \begin{tabbedsection}{0pt}
+  \begin{subitems}
+}{\end{subitems}\end{tabbedsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Start Document     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document% Header Section
+\begin{resume_header}
+\name{Anand Mishra}
+\program{Btech IIT Varanasi - Computer Science and Engineering}
+\contact{anand.mishra.off@gmail.com \hspace{2cm} +91 8825317943 \hspace{2cm} Jharkhand, India}
+\end{resume_header}
+
+% Education Section
+\begin{resume_section}{Education}          
+
+  \begin{resume_subsection}[Varanasi, 2020-2024]{Indian Institute of Technology}
+    \begin{subitems}
+      \item Btech Engineering majoring in Computer Science and Engineering.
+      \item CPA: 9/10
+    \end{subitems}
+  \end{resume_subsection}
+  
+  \begin{resume_subsection}[SAIL Township Ranchi, Jharkhand 2017-2019]{Delhi Public School School}
+    \begin{subitems}
+      \item Cumulative Average: 92\%
+     \end{subitems}
+  \end{resume_subsection}
+
+\end{resume_section}
+
+% Skills Section
+\begin{resume_section}{Skills}
+  \begin{nospacetabbing}
+    \textbf{Technical Skills:}  \= C/C++, Python, Git\\*
+    \textbf{Interests:} \>Problem solving, Competitive programming\\*
+  \end{nospacetabbing}
+\end{resume_section}
+
+% Experience Section
+\begin{resume_section}{Experience}
+
+  % D. E. Shaw India section with projects
+  \begin{resume_subsection}[Jun 2024 to present]{D E Shaw India}
+    % Project 1
+    \begin{resume_subsection}{Automated Data Pipeline to send report}
+      \begin{subitems}
+
+      
+        \item Designed and implemented an automated \textbf{ETL pipeline} to generate and distribute quarterly reports to analysts, reducing manual effort and ensuring timely data delivery.
+        \item Implemented error handling and logging mechanisms to improve pipeline reliability and maintainability.
+        \item Exposure: Python, Redshift, AWS S3
+      \end{subitems}
+    \end{resume_subsection}
+
+    % Project 2
+    \begin{resume_subsection}{Optimized ETL pipeline}
+      \begin{subitems}
+        \item Enhanced the data enrichment process by optimizing SQL queries in Amazon Redshift, {\textbf{reducing processing time by 30\%}}.
+\item           Utilized Redshift’s internal query mechanisms (distribution keys, sort keys, query pruning) to improve efficiency.
+\item Refactored complex SQL transformations to minimize data shuffling and optimize resource utilization.
+\item Technologies: Python, SQLAlchemy, AWS S3, Amazon Redshift
+      \end{subitems}
+    \end{resume_subsection}
+
+  \end{resume_subsection}
+\end{resume_section}
+
+% Projects/Internship Programs Section
+\begin{resume_section}{Projects/Internship Programs}
+
+  \begin{resume_employer}{D E Shaw summer internship program}{Under Mr. Ganesh Kumar}{May 2023 to July 2023}{Hyderabad}
+  
+    \item Developed an ETL pipeline to extract data from Wikidata and create/update a temporal knowledge graph.
+    \item Exposure: Python, SPARQL, Neo4j, Cypher
+  \end{resume_employer}
+
+    \begin{resume_employer}{Microsoft engage mentorship program}{Under Mr. Vijay Bandi}{Jan 2022 to Apr 2022}{Varanasi}
+    \item Implemented Movie recommendation system using KNN and bag of words.
+    \item Exposure: Python, KNN, Cosine similarity, Streamlit, Bag of Words
+  \end{resume_employer}
+
+    \begin{resume_employer}{LLM-Powered Chatbot for QnA}{Self}{}{Hyderabad}
+    \item Fine-tuned an open-source LLM (Mistral/TinyLlama) on a domain-specific        dataset.
+    \item Optimized hyperparameters using LoRA for efficient performance.
+    \item Deployed a chat interface with Flask/FastAPI.
+    \item Exposure: Python, PyTorch, Hugging Face, LoRA, FastAPI.
+  \end{resume_employer}
+
+  \begin{resume_employer}{Document Search with RAG}{Self}{}{Hyderabad}
+    \item Implemented retrieval-augmented generation (RAG) using FAISS and LangChain.
+    \item Optimized hyperparameters using LoRA for efficient performance.
+    \item Enabled efficient semantic search over large document collections.
+    \item Used OpenAI/LLamaIndex for response generation.
+    \item Exposure: 
+Python, FAISS, LangChain, OpenAI API.
+  \end{resume_employer}
+
+  \begin{resume_employer}{Stock market predictor}{Under Prof. Pratik Chattopadhyay}{Aug 2022 to Nov 2022}{Varanasi}
+    \item Predicted stock prices using historical data and LSTM (Long Short Term Memory).
+    \item Exposure: Pandas, Numpy, LSTM
+  \end{resume_employer}
+
+
+\end{resume_section}
+
+% Other Achievements Section
+\begin{resume_section}{Other Achievements}
+  \begin{itemize}
+    \item Rank 1337 in JEE Advanced 2020.
+    \item Global rank 344 at IMC PROSPERITY Trading Challenge.
+    \item Specialist in Codeforces | max rating: 1556.
+    \item Global rank 225 at March Cook-Off 2022 Div 2.
+    \item Global rank 926 at Codeforces Round 782 Div 2.
+    \item Qualified NSO 2017 for the 2nd round.
+    \item Part of Microsoft engage mentorship program under Mr. Vijay Bandi.
+  \end{itemize}
+\end{resume_section}
+
+\end{document}
+```
